@@ -1,3 +1,14 @@
+"""
+SentinelHunt - Feature Engineering Module
+
+Purpose:
+- Parse PCAP files
+- Extract network flows (5-tuple)
+- Generate basic flow-level behavioral features
+
+Day: 3
+"""
+
 from scapy.all import rdpcap, IP, TCP, UDP
 from collections import defaultdict
 import pandas as pd
