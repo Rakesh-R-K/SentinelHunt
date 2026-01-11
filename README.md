@@ -36,22 +36,42 @@ These features enable detection of behavioral patterns such as:
 - DNS tunneling
 - Low-and-slow command-and-control traffic
 
-No machine learning is used at this stage — detection is possible through
-behavioral reasoning alone.
+---
+
+🟡 **Phase 2: Baseline Analysis & Rule-Based Detection (In Progress)**
+
+### ✅ Completed (Day 5)
+- Statistical baseline established from **2415 benign network flows**
+- Percentile-based profiling (90th / 95th / 99th) used to define normal behavior
+- Key observations:
+  - Most flows are short-lived and bursty
+  - Long-duration or high-volume flows are rare
+  - High DNS entropy and deep subdomains are uncommon in benign traffic
+- Explainable **rule-based anomaly detection** implemented using:
+  - High packet volume thresholds
+  - Long-lived connection thresholds
+  - DNS entropy thresholds
+  - DNS subdomain depth analysis
+- Flow-level **suspicion scoring system** introduced
+- Dataset enriched with anomaly flags and suspicion scores for downstream use
+
+This phase demonstrates that meaningful anomaly detection is possible  
+**without machine learning**, using interpretable and defensible heuristics.
 
 ---
 
-🔵 **Phase 2: Detection Logic & Anomaly Modeling (Next)**
+🔵 **Phase 3: ML-Based Anomaly Detection & Threat Scoring (Next)**
 
 ### 🔜 Planned
-- Rule-based detection logic using engineered features
-- Flow suspicion scoring and prioritization
-- Labeling of flows (normal vs suspicious)
-- Unsupervised anomaly detection (e.g., Isolation Forest, LOF)
-- Preparation of ML-ready datasets
-- Explainability layer for alert interpretation (SOC-focused)
+- Unsupervised anomaly detection (Isolation Forest, LOF)
+- Feature selection and normalization
+- Comparison of ML alerts vs rule-based alerts
+- Threat score aggregation and prioritization
+- Detection engine integration
+- Explainability layer for analyst-facing alerts
 
 ---
 
-📌 **Current Focus**
-Building analyst-grade detection logic on top of behavior-aware flow features.
+📌 **Current Focus**  
+Transitioning from rule-based detection to machine learning–assisted  
+anomaly detection while preserving interpretability and analyst trust.
