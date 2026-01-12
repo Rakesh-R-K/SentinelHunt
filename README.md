@@ -72,6 +72,17 @@ This phase demonstrates that meaningful anomaly detection is possible
 
 ---
 
-📌 **Current Focus**  
-Transitioning from rule-based detection to machine learning–assisted  
-anomaly detection while preserving interpretability and analyst trust.
+## 🟡 Phase 3: Baseline Machine Learning (Completed)
+
+### ✅ Completed
+- ML-safe feature selection from enriched flow dataset
+- Feature normalization and preprocessing
+- Unsupervised anomaly detection using Isolation Forest
+- Generation of ML anomaly scores and labels
+- Hybrid analysis of heuristic vs ML-based detection
+- Model and scaler persistence for future inference
+
+### ⏭️ Next
+- Attack traffic ingestion and labeling
+- Normal-only training for cleaner anomaly baselines
+- Detection validation on malicious flows
