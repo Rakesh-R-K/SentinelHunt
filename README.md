@@ -72,9 +72,9 @@ This phase demonstrates that meaningful anomaly detection is possible
 
 ---
 
-## 🟡 Phase 3: Baseline Machine Learning (Completed)
+## 🟡 Phase 3: Baseline Machine Learning (Completed) ( based on LSTM )
 
-### ✅ Completed
+### ✅ Completed ( Day 6 )
 - ML-safe feature selection from enriched flow dataset
 - Feature normalization and preprocessing
 - Unsupervised anomaly detection using Isolation Forest
