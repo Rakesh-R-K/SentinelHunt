@@ -86,3 +86,11 @@ This phase demonstrates that meaningful anomaly detection is possible
 - Attack traffic ingestion and labeling
 - Normal-only training for cleaner anomaly baselines
 - Detection validation on malicious flows
+
+
+🟢 Phase 3: Threat Scoring & Alerting (Completed)
+
+- Normalized ML and rule-based detection signals
+- Implemented weighted threat score fusion
+- Classified flows into LOW / MEDIUM / HIGH severity
+- Generated SOC-style JSON alerts with explainable reasons
