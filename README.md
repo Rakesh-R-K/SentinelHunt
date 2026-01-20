@@ -38,9 +38,9 @@ These features enable detection of behavioral patterns such as:
 
 ---
 
-🟡 **Phase 2: Baseline Analysis & Rule-Based Detection (In Progress)**
+🟡 **Phase 2: Baseline Analysis & Rule-Based Detection (Completed)**
 
-### ✅ Completed (Day 5)
+### ✅ Completed
 - Statistical baseline established from **2415 benign network flows**
 - Percentile-based profiling (90th / 95th / 99th) used to define normal behavior
 - Key observations:
@@ -53,44 +53,37 @@ These features enable detection of behavioral patterns such as:
   - DNS entropy thresholds
   - DNS subdomain depth analysis
 - Flow-level **suspicion scoring system** introduced
-- Dataset enriched with anomaly flags and suspicion scores for downstream use
+- Dataset enriched with anomaly flags and suspicion scores
 
 This phase demonstrates that meaningful anomaly detection is possible  
 **without machine learning**, using interpretable and defensible heuristics.
 
 ---
 
-🔵 **Phase 3: ML-Based Anomaly Detection & Threat Scoring (Next)**
+🔵 **Phase 3: Machine Learning–Based Detection (Completed)**
 
-### 🔜 Planned
-- Unsupervised anomaly detection (Isolation Forest, LOF)
-- Feature selection and normalization
-- Comparison of ML alerts vs rule-based alerts
-- Threat score aggregation and prioritization
-- Detection engine integration
-- Explainability layer for analyst-facing alerts
-
----
-
-## 🟡 Phase 3: Baseline Machine Learning (Completed) ( based on LSTM )
-
-### ✅ Completed ( Day 6 )
+### ✅ Completed (Day 6)
 - ML-safe feature selection from enriched flow dataset
 - Feature normalization and preprocessing
-- Unsupervised anomaly detection using Isolation Forest
-- Generation of ML anomaly scores and labels
+- Unsupervised anomaly detection using **Isolation Forest**
+- Generation of ML anomaly scores
 - Hybrid analysis of heuristic vs ML-based detection
 - Model and scaler persistence for future inference
 
-### ⏭️ Next
-- Attack traffic ingestion and labeling
-- Normal-only training for cleaner anomaly baselines
-- Detection validation on malicious flows
+---
 
+🟣 **Phase 4: Threat Scoring & SOC Alerting (Completed)**
 
-🟢 Phase 3: Threat Scoring & Alerting (Completed)
-
-- Normalized ML and rule-based detection signals
-- Implemented weighted threat score fusion
-- Classified flows into LOW / MEDIUM / HIGH severity
-- Generated SOC-style JSON alerts with explainable reasons
+### ✅ Completed (Day 8)
+- Normalized ML anomaly scores and rule-based suspicion scores
+- Implemented **weighted threat score fusion**
+- Classified flows into **LOW / MEDIUM / HIGH / CRITICAL** severity bands
+- Introduced explainable **threat labeling layer**
+- Conservatively labeled suspicious traffic without overclassification
+- Generated **SOC-style JSON alerts** with:
+  - Timestamp
+  - Source and destination context
+  - Threat label
+  - Severity
+  - Confidence score
+- End-to-end detection pipeline completed:

@@ -1,59 +1,72 @@
-import pandas as pd
 import json
+import pandas as pd
 from datetime import datetime
 
 # =========================
 # CONFIG
 # =========================
-INPUT_FILE = "feature_engineering/outputs/flow_threat_scores.csv"
+INPUT_FILE = "feature_engineering/outputs/flow_threat_labeled.csv"
 OUTPUT_FILE = "feature_engineering/outputs/alerts.json"
 
 # =========================
-# LOAD DATA
+# SEVERITY MAPPING
 # =========================
-df = pd.read_csv(INPUT_FILE)
-
-print("[+] Loaded flows:", len(df))
-
-# =========================
-# FILTER ALERT-WORTHY FLOWS
-# =========================
-alerts_df = df[df["severity"].isin(["MEDIUM", "HIGH"])]
-
-print("[+] Alerts to generate:", len(alerts_df))
+SEVERITY_MAP = {
+    "CRITICAL": "CRITICAL",
+    "HIGH": "HIGH",
+    "MEDIUM": "MEDIUM",
+    "LOW": "LOW"
+}
 
 # =========================
 # ALERT GENERATION
 # =========================
-alerts = []
+def generate_alerts():
+    df = pd.read_csv(INPUT_FILE)
 
-for _, row in alerts_df.iterrows():
-    reasons = []
+    print("[+] Loaded labeled flows:", len(df))
 
-    if row["suspicion_score"] > 0:
-        reasons.append("Rule-based suspicion triggered")
+    alerts = []
 
-    if row["ml_score_normalized"] > 0.8:
-        reasons.append("High ML anomaly score")
+    for _, row in df.iterrows():
+        # Ignore benign traffic
+        if row["threat_label"] == "BENIGN":
+            continue
 
-    alert = {
-        "timestamp": datetime.utcnow().isoformat() + "Z",
-        "src_ip": row["src_ip"],
-        "dst_ip": row["dst_ip"],
-        "src_port": int(row["src_port"]),
-        "dst_port": int(row["dst_port"]),
-        "protocol": row["protocol"],
-        "final_threat_score": round(row["final_threat_score"], 3),
-        "severity": row["severity"],
-        "reasons": reasons
-    }
+        alert = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "src_ip": row.get("src_ip", "unknown"),
+            "dst_ip": row.get("dst_ip", "unknown"),
+            "protocol": row.get("protocol", "unknown"),
+            "threat_label": row["threat_label"],
+            "severity": SEVERITY_MAP.get(
+                row.get("threat_score_band", "LOW"),
+                "LOW"
+            ),
+            "final_threat_score": round(
+                float(row.get("final_threat_score", 0.0)), 3
+            ),
+            "confidence": round(
+                min(float(row.get("final_threat_score", 0.0)) * 1.2, 1.0),
+                2
+            ),
+            "summary": (
+                f"{row['threat_label']} detected "
+                f"({row.get('threat_score_band', 'LOW')} severity)"
+            )
+        }
 
-    alerts.append(alert)
+        alerts.append(alert)
 
-# =========================
-# SAVE ALERTS
-# =========================
-with open(OUTPUT_FILE, "w") as f:
-    json.dump(alerts, f, indent=2)
+    # =========================
+    # WRITE ALERTS
+    # =========================
+    with open(OUTPUT_FILE, "w") as f:
+        json.dump(alerts, f, indent=2)
 
-print(f"\n[+] Alerts saved to {OUTPUT_FILE}")
+    print(f"[+] Alerts generated: {len(alerts)}")
+    print(f"[+] Alerts written to: {OUTPUT_FILE}")
+
+
+if __name__ == "__main__":
+    generate_alerts()

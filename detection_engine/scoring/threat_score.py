@@ -18,9 +18,15 @@ print("[+] Flow records:", len(flows_df))
 print("[+] ML records:", len(ml_df))
 
 # =========================
+# BASIC SANITY CHECK
+# =========================
+if len(flows_df) != len(ml_df):
+    raise ValueError("Flow records and ML records count mismatch")
+
+# =========================
 # MERGE ML SCORES INTO FLOWS
 # =========================
-# Assumes same ordering (as in your pipeline so far)
+# Assumes same ordering (true in your pipeline)
 flows_df["ml_anomaly_score"] = ml_df["iforest_score"]
 
 # =========================
@@ -61,11 +67,28 @@ flows_df["final_threat_score"] = (
 )
 
 # =========================
+# THREAT SCORE BAND (HUMAN READABLE)
+# =========================
+def score_band(score):
+    if score >= 0.8:
+        return "CRITICAL"
+    elif score >= 0.6:
+        return "HIGH"
+    elif score >= 0.4:
+        return "MEDIUM"
+    else:
+        return "LOW"
+
+flows_df["threat_score_band"] = flows_df["final_threat_score"].apply(score_band)
+
+# =========================
 # FINAL SCORE STATS
 # =========================
 print("\n[+] Final threat score statistics:")
 print(flows_df["final_threat_score"].describe())
 
+print("\n[+] Threat score band distribution:")
+print(flows_df["threat_score_band"].value_counts())
 
 # =========================
 # SAVE OUTPUT
