@@ -86,4 +86,31 @@ This phase demonstrates that meaningful anomaly detection is possible
   - Threat label
   - Severity
   - Confidence score
-- End-to-end detection pipeline completed:
+
+---
+
+🔴 **Phase 5: Alert Triage & Analyst Contextualization (Completed)**
+
+### ✅ Completed (Day 9)
+- Enhanced alerts with **analyst-readable explanations**
+- Introduced unique **alert identifiers (ALERT-XXXX)** for tracking
+- Added **human-readable reason field** explaining why each alert was raised
+- Added **threat categorization layer** (e.g., anomalous flow, scan, beaconing)
+- Enriched alerts with full **flow context**:
+  - Source IP / Destination IP
+  - Source port / Destination port
+  - Protocol
+- Implemented **confidence scoring** to indicate detection reliability
+- Generated **SOC-ready alert output** suitable for triage and investigation
+
+This phase transforms raw detections into **actionable security intelligence**,  
+bridging the gap between detection logic and real-world SOC workflows.
+
+---
+
+## ✅ Current Pipeline State
+
+**PCAP → Flow Extraction → Feature Engineering → Baseline Modeling →  
+Rule-Based Detection → ML Detection → Threat Scoring → Alert Triage**
+
+SentinelHunt now functions as a **complete end-to-end threat hunting pipeline**.
