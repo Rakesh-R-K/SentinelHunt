@@ -1,0 +1,99 @@
+[
+  {
+    "entity": "192.168.118.134",
+    "rule": "DNS_BEACONING",
+    "campaign_type": "active_campaign",
+    "timeline": [
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 1.0)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.814)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.817)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 1.0)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.807)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.815)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.813)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.814)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 0.972)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 1.0)",
+      "13:41:34 \u2014 DNS_BEACONING detected (score: 1.0)"
+    ]
+  },
+  {
+    "entity": "192.168.118.2",
+    "rule": "NO_RULE",
+    "campaign_type": "active_campaign",
+    "timeline": [
+      "13:41:34 \u2014 NO_RULE detected (score: 0.858)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.831)",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.611)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.607)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.616)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.611)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.629)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.62)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.631)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.621)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.632)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.753)",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.616)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.606)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.625)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.686)",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.831)",
+      "13:41:34 \u2014 Severity escalated to HIGH"
+    ]
+  },
+  {
+    "entity": "192.168.118.134",
+    "rule": "NO_RULE",
+    "campaign_type": "active_campaign",
+    "timeline": [
+      "13:41:34 \u2014 NO_RULE detected (score: 0.623)",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.616)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.629)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.627)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.626)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.614)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.62)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.623)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.647)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.647)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.63)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.631)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.634)",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.626)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.626)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.615)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.639)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.635)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.629)",
+      "13:41:34 \u2014 Severity escalated to CRITICAL",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.873)",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.873)",
+      "13:41:34 \u2014 Severity escalated to HIGH",
+      "13:41:34 \u2014 NO_RULE detected (score: 0.629)"
+    ]
+  },
+  {
+    "entity": "103.102.166.224",
+    "rule": "NO_RULE",
+    "campaign_type": "single_event",
+    "timeline": [
+      "13:41:34 \u2014 NO_RULE detected (score: 0.637)"
+    ]
+  }
+]

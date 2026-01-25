@@ -96,39 +96,59 @@ This phase demonstrates that meaningful anomaly detection is possible
 - Introduced unique **alert identifiers (ALERT-XXXX)** for tracking
 - Added **human-readable reason field** explaining why each alert was raised
 - Added **threat categorization layer** (e.g., anomalous flow, scan, beaconing)
-- Enriched alerts with full **flow context**:
-  - Source IP / Destination IP
-  - Source port / Destination port
-  - Protocol
+- Enriched alerts with full **flow context**
 - Implemented **confidence scoring** to indicate detection reliability
-- Generated **SOC-ready alert output** suitable for triage and investigation
 
-This phase transforms raw detections into **actionable security intelligence**,  
-bridging the gap between detection logic and real-world SOC workflows.
+This phase transforms raw detections into **actionable SOC alerts**.
+
+---
+
+🟠 **Phase 6: Alert Intelligence & Campaign Analysis (Completed)**
+
+### ✅ Completed (Day 11)
+- Implemented **alert aggregation** to correlate related alerts
+- Reduced alert noise by grouping alerts by:
+  - Source entity
+  - Detection rule
+- Introduced **campaign classification**:
+  - Single event
+  - Repeated activity
+  - Active campaign
+- Successfully detected and classified an **active DNS beaconing campaign**
+- Built **attack timeline reconstruction** to visualize:
+  - Repeated detections
+  - Threat score evolution
+  - Severity escalation over time
+- Enabled analyst-style investigation and incident prioritization
+
+This phase elevates SentinelHunt from alerting to **true security intelligence**.
 
 ---
 
 ## ✅ Current Pipeline State
 
 **PCAP → Flow Extraction → Feature Engineering → Baseline Modeling →  
-Rule-Based Detection → ML Detection → Threat Scoring → Alert Triage**
+Rule-Based Detection → ML Detection → Threat Scoring → Alert Triage →  
+Alert Aggregation → Campaign Detection → Timeline Reconstruction**
 
-SentinelHunt now functions as a **complete end-to-end threat hunting pipeline**.
+SentinelHunt now functions as a **full end-to-end SOC-grade threat hunting platform**.
 
-## Detection Engine (Phase 1)
+---
+
+## Detection Engine
 
 SentinelHunt uses a hybrid detection approach combining:
 - Statistical anomaly scoring
 - Deterministic rule-based detection
+- Machine learning–based anomaly detection
 
 ### Alert Lifecycle
 1. Network flows are extracted from PCAP files
 2. Flow-level features are engineered (rate, entropy, timing)
-3. Anomaly and rule scores are combined
-4. Alerts are generated with:
-   - Severity
-   - Confidence
-   - Human-readable reasoning
+3. Rule-based and ML-based scores are fused
+4. Alerts are generated with severity and confidence
+5. Alerts are aggregated into incidents
+6. Campaigns are identified and timelines reconstructed
 
 ### Rule-Based Detection (Current)
 Implemented rules include:

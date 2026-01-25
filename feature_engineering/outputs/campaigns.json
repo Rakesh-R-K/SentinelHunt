@@ -1,0 +1,42 @@
+[
+  {
+    "entity": "192.168.118.134",
+    "rule": "DNS_BEACONING",
+    "alert_count": 11,
+    "max_severity": "CRITICAL",
+    "avg_score": 0.896,
+    "first_seen": "2026-01-25T13:41:34.313161Z",
+    "last_seen": "2026-01-25T13:41:34.424316Z",
+    "campaign_type": "active_campaign"
+  },
+  {
+    "entity": "192.168.118.2",
+    "rule": "NO_RULE",
+    "alert_count": 27,
+    "max_severity": "CRITICAL",
+    "avg_score": 0.687,
+    "first_seen": "2026-01-25T13:41:34.313693Z",
+    "last_seen": "2026-01-25T13:41:34.426063Z",
+    "campaign_type": "active_campaign"
+  },
+  {
+    "entity": "192.168.118.134",
+    "rule": "NO_RULE",
+    "alert_count": 30,
+    "max_severity": "CRITICAL",
+    "avg_score": 0.669,
+    "first_seen": "2026-01-25T13:41:34.320412Z",
+    "last_seen": "2026-01-25T13:41:34.425871Z",
+    "campaign_type": "active_campaign"
+  },
+  {
+    "entity": "103.102.166.224",
+    "rule": "NO_RULE",
+    "alert_count": 1,
+    "max_severity": "HIGH",
+    "avg_score": 0.637,
+    "first_seen": "2026-01-25T13:41:34.340843Z",
+    "last_seen": "2026-01-25T13:41:34.340843Z",
+    "campaign_type": "single_event"
+  }
+]
