@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 from datetime import datetime
+from detection_engine.rules import RULES
 
 # =========================
 # CONFIG
@@ -9,28 +10,27 @@ INPUT_FILE = "feature_engineering/outputs/flow_threat_labeled.csv"
 OUTPUT_FILE = "feature_engineering/outputs/alerts.json"
 
 # =========================
-# SEVERITY MAPPING
+# SEVERITY MAPPING (SOC-GRADE)
 # =========================
-SEVERITY_MAP = {
-    "CRITICAL": "CRITICAL",
-    "HIGH": "HIGH",
-    "MEDIUM": "MEDIUM",
-    "LOW": "LOW"
-}
-
-# =========================
-# DAY 9 ADD-ONS
-# =========================
-def determine_reason(threat_label, threat_score):
-    if threat_score >= 0.8:
-        return f"High confidence detection of {threat_label}"
-    elif threat_score >= 0.5:
-        return f"Moderate confidence detection of {threat_label}"
-    else:
-        return f"Low confidence suspicious activity ({threat_label})"
+SEVERITY_BANDS = [
+    (0.0, 0.3, "LOW"),
+    (0.3, 0.6, "MEDIUM"),
+    (0.6, 0.8, "HIGH"),
+    (0.8, 1.01, "CRITICAL"),
+]
 
 
-def determine_threat_type(threat_label):
+def map_severity(score: float) -> str:
+    for low, high, severity in SEVERITY_BANDS:
+        if low <= score < high:
+            return severity
+    return "UNKNOWN"
+
+
+# =========================
+# EXPLAINABILITY HELPERS
+# =========================
+def determine_threat_type(threat_label: str) -> str:
     label = threat_label.lower()
     if "scan" in label:
         return "port_scan"
@@ -42,6 +42,56 @@ def determine_threat_type(threat_label):
         return "malware_activity"
     else:
         return "anomalous_flow"
+
+
+def extract_indicators(row) -> list:
+    """
+    Derive human-readable indicators from flow features.
+    These are intentionally simple for Phase 1.
+    """
+    indicators = []
+
+    if row.get("packet_count", 0) > 1000:
+        indicators.append("high packet count")
+
+    if row.get("flow_duration", 0) < 1:
+        indicators.append("short-lived high-volume flow")
+
+    if row.get("avg_inter_arrival_time", 1) < 0.01:
+        indicators.append("low inter-arrival variance")
+
+    if not indicators:
+        indicators.append("statistical anomaly in flow behavior")
+
+    return indicators
+
+
+def build_reason(threat_label: str, indicators: list) -> str:
+    return f"{threat_label} detected due to: " + ", ".join(indicators)
+
+
+def calculate_confidence(score: float, indicator_count: int) -> float:
+    base = min(score, 1.0)
+    boost = 0.1 * indicator_count
+    return round(min(base + boost, 1.0), 2)
+
+
+def apply_rules(flow_row):
+    triggered_rules = []
+    score_boost = 0.0
+    indicators = []
+
+    flow = flow_row.to_dict()
+
+    for rule in RULES:
+        matched, metadata = rule(flow)
+        if matched:
+            triggered_rules.append(metadata["rule"])
+            score_boost += metadata.get("severity_boost", 0.0)
+            indicators.append(metadata.get("indicator"))
+
+    return triggered_rules, score_boost, indicators
+
 
 # =========================
 # ALERT GENERATION
@@ -60,6 +110,22 @@ def generate_alerts():
             continue
 
         final_score = float(row.get("final_threat_score", 0.0))
+        severity = map_severity(final_score)
+
+        indicators = extract_indicators(row)
+        confidence = calculate_confidence(final_score, len(indicators))
+        base_score = float(row.get("final_threat_score", 0.0))
+
+        triggered_rules, rule_score_boost, rule_indicators = apply_rules(row)
+
+        final_score = min(base_score + rule_score_boost, 1.0)
+        severity = map_severity(final_score)
+
+        feature_indicators = extract_indicators(row)
+        all_indicators = list(set(feature_indicators + rule_indicators))
+
+        confidence = calculate_confidence(final_score, len(triggered_rules))
+
 
         alert = {
             "alert_id": f"ALERT-{alert_id:04d}",
@@ -71,21 +137,16 @@ def generate_alerts():
             "protocol": row.get("protocol", "unknown"),
             "threat_label": row["threat_label"],
             "threat_type": determine_threat_type(row["threat_label"]),
-            "severity": SEVERITY_MAP.get(
-                row.get("threat_score_band", "LOW"),
-                "LOW"
-            ),
+            "severity": severity,
             "final_threat_score": round(final_score, 3),
-            "confidence": round(min(final_score * 1.2, 1.0), 2),
-            "reason": determine_reason(
-                row["threat_label"],
-                final_score
-            ),
+            "confidence": confidence,
+            "triggered_rules": triggered_rules,
+            "reason": build_reason(row["threat_label"], all_indicators),
             "summary": (
-                f"{row['threat_label']} detected "
-                f"from {row.get('src_ip', 'unknown')} "
-                f"to {row.get('dst_ip', 'unknown')} "
-                f"({row.get('threat_score_band', 'LOW')} severity)"
+                f"{severity} alert: {row['threat_label']} "
+                f"from {row.get('src_ip', 'unknown')}:{row.get('src_port', '-')}"
+                f" → {row.get('dst_ip', 'unknown')}:{row.get('dst_port', '-')}"
+                f" over {row.get('protocol', 'unknown')}"
             )
         }
 

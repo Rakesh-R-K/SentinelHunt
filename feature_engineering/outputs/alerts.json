@@ -1,7 +1,7 @@
 [
   {
     "alert_id": "ALERT-0001",
-    "timestamp": "2026-01-24T06:21:01.143278Z",
+    "timestamp": "2026-01-25T13:41:34.313161Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 55026,
@@ -10,14 +10,17 @@
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
-    "final_threat_score": 0.851,
+    "final_threat_score": 1.0,
     "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:55026 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0002",
-    "timestamp": "2026-01-24T06:21:01.143635Z",
+    "timestamp": "2026-01-25T13:41:34.313693Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -27,13 +30,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.858,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.86,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:55026 over UDP"
   },
   {
     "alert_id": "ALERT-0003",
-    "timestamp": "2026-01-24T06:21:01.144412Z",
+    "timestamp": "2026-01-25T13:41:34.315260Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 48230,
@@ -41,15 +45,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.614,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.814,
+    "confidence": 0.91,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:48230 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0004",
-    "timestamp": "2026-01-24T06:21:01.148497Z",
+    "timestamp": "2026-01-25T13:41:34.320412Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 38722,
@@ -59,13 +66,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.623,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:38722 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0005",
-    "timestamp": "2026-01-24T06:21:01.149781Z",
+    "timestamp": "2026-01-25T13:41:34.322298Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 53420,
@@ -73,15 +81,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.617,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.817,
+    "confidence": 0.92,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:53420 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0006",
-    "timestamp": "2026-01-24T06:21:01.150959Z",
+    "timestamp": "2026-01-25T13:41:34.323731Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 54262,
@@ -91,13 +102,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.873,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "confidence": 0.87,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:54262 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0007",
-    "timestamp": "2026-01-24T06:21:01.151022Z",
+    "timestamp": "2026-01-25T13:41:34.324000Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 33344,
@@ -106,14 +118,17 @@
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
-    "final_threat_score": 0.862,
+    "final_threat_score": 1.0,
     "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:33344 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0008",
-    "timestamp": "2026-01-24T06:21:01.151078Z",
+    "timestamp": "2026-01-25T13:41:34.324310Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -123,13 +138,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.831,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.83,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:54262 over UDP"
   },
   {
     "alert_id": "ALERT-0009",
-    "timestamp": "2026-01-24T06:21:01.151138Z",
+    "timestamp": "2026-01-25T13:41:34.324576Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -139,13 +155,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.687,
-    "confidence": 0.82,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.69,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:33344 over UDP"
   },
   {
     "alert_id": "ALERT-0010",
-    "timestamp": "2026-01-24T06:21:01.153101Z",
+    "timestamp": "2026-01-25T13:41:34.331005Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 54160,
@@ -155,13 +172,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.614,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:54160 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0011",
-    "timestamp": "2026-01-24T06:21:01.153159Z",
+    "timestamp": "2026-01-25T13:41:34.331318Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 35148,
@@ -169,15 +187,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.607,
-    "confidence": 0.73,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.807,
+    "confidence": 0.91,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:35148 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0012",
-    "timestamp": "2026-01-24T06:21:01.153210Z",
+    "timestamp": "2026-01-25T13:41:34.332164Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 42362,
@@ -187,13 +208,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.616,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:42362 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0013",
-    "timestamp": "2026-01-24T06:21:01.153260Z",
+    "timestamp": "2026-01-25T13:41:34.332452Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 60277,
@@ -201,15 +223,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.615,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.815,
+    "confidence": 0.91,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:60277 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0014",
-    "timestamp": "2026-01-24T06:21:01.153345Z",
+    "timestamp": "2026-01-25T13:41:34.332716Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -219,13 +244,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.611,
-    "confidence": 0.73,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:54160 over UDP"
   },
   {
     "alert_id": "ALERT-0015",
-    "timestamp": "2026-01-24T06:21:01.153403Z",
+    "timestamp": "2026-01-25T13:41:34.332976Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -235,13 +261,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.607,
-    "confidence": 0.73,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:35148 over UDP"
   },
   {
     "alert_id": "ALERT-0016",
-    "timestamp": "2026-01-24T06:21:01.153457Z",
+    "timestamp": "2026-01-25T13:41:34.333282Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -251,13 +278,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.616,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:42362 over UDP"
   },
   {
     "alert_id": "ALERT-0017",
-    "timestamp": "2026-01-24T06:21:01.153511Z",
+    "timestamp": "2026-01-25T13:41:34.333615Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -267,13 +295,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.611,
-    "confidence": 0.73,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:60277 over UDP"
   },
   {
     "alert_id": "ALERT-0018",
-    "timestamp": "2026-01-24T06:21:01.157786Z",
+    "timestamp": "2026-01-25T13:41:34.340843Z",
     "src_ip": "103.102.166.224",
     "dst_ip": "192.168.118.134",
     "src_port": 443,
@@ -283,13 +312,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.637,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 103.102.166.224 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 103.102.166.224:443 \u2192 192.168.118.134:42740 over TCP"
   },
   {
     "alert_id": "ALERT-0019",
-    "timestamp": "2026-01-24T06:21:01.159416Z",
+    "timestamp": "2026-01-25T13:41:34.344503Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 56551,
@@ -299,13 +329,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.629,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:56551 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0020",
-    "timestamp": "2026-01-24T06:21:01.159472Z",
+    "timestamp": "2026-01-25T13:41:34.344803Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 33373,
@@ -315,13 +346,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.627,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:33373 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0021",
-    "timestamp": "2026-01-24T06:21:01.159549Z",
+    "timestamp": "2026-01-25T13:41:34.345309Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -331,13 +363,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.629,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:56551 over UDP"
   },
   {
     "alert_id": "ALERT-0022",
-    "timestamp": "2026-01-24T06:21:01.159924Z",
+    "timestamp": "2026-01-25T13:41:34.346448Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 60594,
@@ -347,13 +380,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.626,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:60594 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0023",
-    "timestamp": "2026-01-24T06:21:01.165642Z",
+    "timestamp": "2026-01-25T13:41:34.361678Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 42975,
@@ -363,13 +397,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.614,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:42975 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0024",
-    "timestamp": "2026-01-24T06:21:01.167095Z",
+    "timestamp": "2026-01-25T13:41:34.364371Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 55042,
@@ -377,15 +412,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.613,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.813,
+    "confidence": 0.91,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:55042 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0025",
-    "timestamp": "2026-01-24T06:21:01.180148Z",
+    "timestamp": "2026-01-25T13:41:34.386258Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 57141,
@@ -395,13 +433,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.62,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:57141 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0026",
-    "timestamp": "2026-01-24T06:21:01.181019Z",
+    "timestamp": "2026-01-25T13:41:34.388424Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -411,13 +450,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.62,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:57141 over UDP"
   },
   {
     "alert_id": "ALERT-0027",
-    "timestamp": "2026-01-24T06:21:01.185591Z",
+    "timestamp": "2026-01-25T13:41:34.394477Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 54896,
@@ -425,15 +465,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.614,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.814,
+    "confidence": 0.91,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:54896 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0028",
-    "timestamp": "2026-01-24T06:21:01.193586Z",
+    "timestamp": "2026-01-25T13:41:34.405258Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 55441,
@@ -443,13 +486,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:55441 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0029",
-    "timestamp": "2026-01-24T06:21:01.193658Z",
+    "timestamp": "2026-01-25T13:41:34.405401Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 54121,
@@ -459,13 +503,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.623,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:54121 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0030",
-    "timestamp": "2026-01-24T06:21:01.193723Z",
+    "timestamp": "2026-01-25T13:41:34.405559Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -475,13 +520,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:55441 over UDP"
   },
   {
     "alert_id": "ALERT-0031",
-    "timestamp": "2026-01-24T06:21:01.197167Z",
+    "timestamp": "2026-01-25T13:41:34.410189Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 38639,
@@ -491,13 +537,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.647,
-    "confidence": 0.78,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.65,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:38639 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0032",
-    "timestamp": "2026-01-24T06:21:01.197223Z",
+    "timestamp": "2026-01-25T13:41:34.410325Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 57865,
@@ -507,13 +554,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.647,
-    "confidence": 0.78,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.65,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:57865 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0033",
-    "timestamp": "2026-01-24T06:21:01.197428Z",
+    "timestamp": "2026-01-25T13:41:34.410729Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -523,13 +571,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.631,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:57865 over UDP"
   },
   {
     "alert_id": "ALERT-0034",
-    "timestamp": "2026-01-24T06:21:01.198937Z",
+    "timestamp": "2026-01-25T13:41:34.412626Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 40977,
@@ -539,13 +588,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:40977 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0035",
-    "timestamp": "2026-01-24T06:21:01.198993Z",
+    "timestamp": "2026-01-25T13:41:34.412764Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 36382,
@@ -555,13 +605,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.63,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:36382 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0036",
-    "timestamp": "2026-01-24T06:21:01.199068Z",
+    "timestamp": "2026-01-25T13:41:34.412931Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -571,13 +622,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.621,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:36382 over UDP"
   },
   {
     "alert_id": "ALERT-0037",
-    "timestamp": "2026-01-24T06:21:01.199140Z",
+    "timestamp": "2026-01-25T13:41:34.413125Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -587,13 +639,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:40977 over UDP"
   },
   {
     "alert_id": "ALERT-0038",
-    "timestamp": "2026-01-24T06:21:01.200038Z",
+    "timestamp": "2026-01-25T13:41:34.414745Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 43390,
@@ -603,13 +656,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.631,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:43390 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0039",
-    "timestamp": "2026-01-24T06:21:01.200091Z",
+    "timestamp": "2026-01-25T13:41:34.414926Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 49317,
@@ -619,13 +673,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.634,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:49317 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0040",
-    "timestamp": "2026-01-24T06:21:01.200141Z",
+    "timestamp": "2026-01-25T13:41:34.415069Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 37112,
@@ -635,13 +690,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.834,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "confidence": 0.83,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:37112 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0041",
-    "timestamp": "2026-01-24T06:21:01.200207Z",
+    "timestamp": "2026-01-25T13:41:34.415231Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 49924,
@@ -649,15 +705,18 @@
     "protocol": "UDP",
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
-    "severity": "HIGH",
-    "final_threat_score": 0.772,
-    "confidence": 0.93,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "severity": "CRITICAL",
+    "final_threat_score": 0.972,
+    "confidence": 1.0,
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:49924 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0042",
-    "timestamp": "2026-01-24T06:21:01.200318Z",
+    "timestamp": "2026-01-25T13:41:34.415473Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 50538,
@@ -667,13 +726,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.647,
-    "confidence": 0.78,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.65,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:50538 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0043",
-    "timestamp": "2026-01-24T06:21:01.200368Z",
+    "timestamp": "2026-01-25T13:41:34.415621Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 41671,
@@ -683,13 +743,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.626,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:41671 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0044",
-    "timestamp": "2026-01-24T06:21:01.200419Z",
+    "timestamp": "2026-01-25T13:41:34.415759Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 38516,
@@ -699,13 +760,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.626,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:38516 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0045",
-    "timestamp": "2026-01-24T06:21:01.200468Z",
+    "timestamp": "2026-01-25T13:41:34.415892Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 53518,
@@ -715,13 +777,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.615,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:53518 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0046",
-    "timestamp": "2026-01-24T06:21:01.200542Z",
+    "timestamp": "2026-01-25T13:41:34.416068Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -731,13 +794,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.632,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:43390 over UDP"
   },
   {
     "alert_id": "ALERT-0047",
-    "timestamp": "2026-01-24T06:21:01.200617Z",
+    "timestamp": "2026-01-25T13:41:34.416297Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -747,13 +811,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.753,
-    "confidence": 0.9,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.75,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:49924 over UDP"
   },
   {
     "alert_id": "ALERT-0048",
-    "timestamp": "2026-01-24T06:21:01.200667Z",
+    "timestamp": "2026-01-25T13:41:34.416433Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -763,13 +828,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.827,
-    "confidence": 0.99,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.83,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:37112 over UDP"
   },
   {
     "alert_id": "ALERT-0049",
-    "timestamp": "2026-01-24T06:21:01.200715Z",
+    "timestamp": "2026-01-25T13:41:34.416566Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 51904,
@@ -779,13 +845,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:51904 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0050",
-    "timestamp": "2026-01-24T06:21:01.200762Z",
+    "timestamp": "2026-01-25T13:41:34.416700Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 48724,
@@ -795,13 +862,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.635,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:48724 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0051",
-    "timestamp": "2026-01-24T06:21:01.200879Z",
+    "timestamp": "2026-01-25T13:41:34.416940Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -811,13 +879,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.631,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:50538 over UDP"
   },
   {
     "alert_id": "ALERT-0052",
-    "timestamp": "2026-01-24T06:21:01.200932Z",
+    "timestamp": "2026-01-25T13:41:34.417077Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -827,13 +896,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.616,
-    "confidence": 0.74,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.62,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:41671 over UDP"
   },
   {
     "alert_id": "ALERT-0053",
-    "timestamp": "2026-01-24T06:21:01.201007Z",
+    "timestamp": "2026-01-25T13:41:34.417251Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -843,13 +913,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.606,
-    "confidence": 0.73,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.61,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:53518 over UDP"
   },
   {
     "alert_id": "ALERT-0054",
-    "timestamp": "2026-01-24T06:21:01.201125Z",
+    "timestamp": "2026-01-25T13:41:34.417494Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -859,13 +930,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.625,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:38516 over UDP"
   },
   {
     "alert_id": "ALERT-0055",
-    "timestamp": "2026-01-24T06:21:01.201200Z",
+    "timestamp": "2026-01-25T13:41:34.417670Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 54379,
@@ -875,13 +947,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.629,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:54379 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0056",
-    "timestamp": "2026-01-24T06:21:01.201922Z",
+    "timestamp": "2026-01-25T13:41:34.418603Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -891,13 +964,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.639,
-    "confidence": 0.77,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.64,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:51904 over UDP"
   },
   {
     "alert_id": "ALERT-0057",
-    "timestamp": "2026-01-24T06:21:01.205748Z",
+    "timestamp": "2026-01-25T13:41:34.421507Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 36358,
@@ -907,13 +981,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.873,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "confidence": 0.87,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:36358 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0058",
-    "timestamp": "2026-01-24T06:21:01.205855Z",
+    "timestamp": "2026-01-25T13:41:34.421685Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 44131,
@@ -922,14 +997,17 @@
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
-    "final_threat_score": 0.87,
+    "final_threat_score": 1.0,
     "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:44131 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0059",
-    "timestamp": "2026-01-24T06:21:01.205978Z",
+    "timestamp": "2026-01-25T13:41:34.421913Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -939,13 +1017,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.686,
-    "confidence": 0.82,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.69,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:44131 over UDP"
   },
   {
     "alert_id": "ALERT-0060",
-    "timestamp": "2026-01-24T06:21:01.206028Z",
+    "timestamp": "2026-01-25T13:41:34.422038Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -955,13 +1034,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.831,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.83,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:36358 over UDP"
   },
   {
     "alert_id": "ALERT-0061",
-    "timestamp": "2026-01-24T06:21:01.207579Z",
+    "timestamp": "2026-01-25T13:41:34.424160Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 43053,
@@ -971,13 +1051,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.873,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "confidence": 0.87,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:43053 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0062",
-    "timestamp": "2026-01-24T06:21:01.207633Z",
+    "timestamp": "2026-01-25T13:41:34.424316Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 39227,
@@ -986,14 +1067,17 @@
     "threat_label": "SUSPICIOUS_TRAFFIC",
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
-    "final_threat_score": 0.87,
+    "final_threat_score": 1.0,
     "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "triggered_rules": [
+      "DNS_BEACONING"
+    ],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow, suspicious high-entropy, repetitive DNS queries",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:39227 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0063",
-    "timestamp": "2026-01-24T06:21:01.207683Z",
+    "timestamp": "2026-01-25T13:41:34.424561Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 38276,
@@ -1003,13 +1087,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.873,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (CRITICAL severity)"
+    "confidence": 0.87,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:38276 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0064",
-    "timestamp": "2026-01-24T06:21:01.207731Z",
+    "timestamp": "2026-01-25T13:41:34.424696Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -1019,13 +1104,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.792,
-    "confidence": 0.95,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.79,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:39227 over UDP"
   },
   {
     "alert_id": "ALERT-0065",
-    "timestamp": "2026-01-24T06:21:01.207780Z",
+    "timestamp": "2026-01-25T13:41:34.424831Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -1035,13 +1121,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.848,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.85,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:38276 over UDP"
   },
   {
     "alert_id": "ALERT-0066",
-    "timestamp": "2026-01-24T06:21:01.207852Z",
+    "timestamp": "2026-01-25T13:41:34.425002Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -1051,13 +1138,14 @@
     "threat_type": "anomalous_flow",
     "severity": "CRITICAL",
     "final_threat_score": 0.831,
-    "confidence": 1.0,
-    "reason": "High confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (CRITICAL severity)"
+    "confidence": 0.83,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "CRITICAL alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:43053 over UDP"
   },
   {
     "alert_id": "ALERT-0067",
-    "timestamp": "2026-01-24T06:21:01.208864Z",
+    "timestamp": "2026-01-25T13:41:34.425731Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 60121,
@@ -1067,13 +1155,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.631,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:60121 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0068",
-    "timestamp": "2026-01-24T06:21:01.208933Z",
+    "timestamp": "2026-01-25T13:41:34.425871Z",
     "src_ip": "192.168.118.134",
     "dst_ip": "192.168.118.2",
     "src_port": 43578,
@@ -1083,13 +1172,14 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.629,
-    "confidence": 0.75,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.134 to 192.168.118.2 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.134:43578 \u2192 192.168.118.2:53 over UDP"
   },
   {
     "alert_id": "ALERT-0069",
-    "timestamp": "2026-01-24T06:21:01.209012Z",
+    "timestamp": "2026-01-25T13:41:34.426063Z",
     "src_ip": "192.168.118.2",
     "dst_ip": "192.168.118.134",
     "src_port": 53,
@@ -1099,8 +1189,9 @@
     "threat_type": "anomalous_flow",
     "severity": "HIGH",
     "final_threat_score": 0.634,
-    "confidence": 0.76,
-    "reason": "Moderate confidence detection of SUSPICIOUS_TRAFFIC",
-    "summary": "SUSPICIOUS_TRAFFIC detected from 192.168.118.2 to 192.168.118.134 (HIGH severity)"
+    "confidence": 0.63,
+    "triggered_rules": [],
+    "reason": "SUSPICIOUS_TRAFFIC detected due to: short-lived high-volume flow",
+    "summary": "HIGH alert: SUSPICIOUS_TRAFFIC from 192.168.118.2:53 \u2192 192.168.118.134:60121 over UDP"
   }
 ]

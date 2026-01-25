@@ -114,3 +114,27 @@ bridging the gap between detection logic and real-world SOC workflows.
 Rule-Based Detection → ML Detection → Threat Scoring → Alert Triage**
 
 SentinelHunt now functions as a **complete end-to-end threat hunting pipeline**.
+
+## Detection Engine (Phase 1)
+
+SentinelHunt uses a hybrid detection approach combining:
+- Statistical anomaly scoring
+- Deterministic rule-based detection
+
+### Alert Lifecycle
+1. Network flows are extracted from PCAP files
+2. Flow-level features are engineered (rate, entropy, timing)
+3. Anomaly and rule scores are combined
+4. Alerts are generated with:
+   - Severity
+   - Confidence
+   - Human-readable reasoning
+
+### Rule-Based Detection (Current)
+Implemented rules include:
+- **DNS Beaconing Detection**
+  - High DNS entropy
+  - Deep subdomain usage
+  - Elevated packet rates
+
+These rules enhance explainability and improve confidence in high-risk alerts.
