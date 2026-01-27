@@ -1,0 +1,39 @@
+{
+  "README": "Ground truth labels for attack validation",
+  "description": "Map flow identifiers to attack types for evaluation",
+  "format": "flow_key or pcap_file -> attack_type",
+  
+  "attack_types": {
+    "BENIGN": "Normal, legitimate traffic",
+    "PORT_SCAN": "Network reconnaissance via port scanning",
+    "DNS_TUNNELING": "Data exfiltration via DNS queries",
+    "C2_BEACONING": "Command and control periodic check-ins",
+    "DATA_EXFILTRATION": "Large-scale data theft",
+    "BRUTE_FORCE": "Password guessing attacks",
+    "DDoS": "Distributed denial of service"
+  },
+  
+  "sample_labels": {
+    "192.168.118.134:55026_192.168.118.2:53_UDP": "DNS_TUNNELING",
+    "10.0.0.5_*_TCP": "PORT_SCAN",
+    "172.16.0.10:443_malicious-c2.com:443_TCP": "C2_BEACONING"
+  },
+  
+  "instructions": [
+    "1. Capture attack traffic using scripts in attack_scenarios/",
+    "2. Note the source IPs and characteristics of each attack",
+    "3. Label flows in this file with their true attack type",
+    "4. Run evaluation.py to calculate metrics",
+    "5. Compare system detections against these labels"
+  ],
+  
+  "pcap_labels": {
+    "normal_web_1.pcap": "BENIGN",
+    "normal_idle.pcap": "BENIGN",
+    "normal_git.pcap": "BENIGN",
+    "port_scan_attack_20260127.pcap": "PORT_SCAN",
+    "dns_tunnel_attack_20260127.pcap": "DNS_TUNNELING",
+    "beaconing_attack_20260127.pcap": "C2_BEACONING",
+    "exfiltration_attack_20260127.pcap": "DATA_EXFILTRATION"
+  }
+}

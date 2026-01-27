@@ -1,4 +1,163 @@
-## Status
+# 🛡️ SentinelHunt
+
+**AI-Assisted Network Threat Hunting Platform**
+
+> Behavioral anomaly detection meets explainable AI to hunt unknown network threats without signatures
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
+[![Go](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+
+---
+
+## 🎯 Project Overview
+
+SentinelHunt is a **capstone-level threat hunting platform** that detects zero-day and unknown network threats using behavioral anomaly detection and explainable AI. Unlike signature-based systems (Snort, Suricata), SentinelHunt analyzes traffic behavior patterns to identify suspicious activity that has never been seen before.
+
+### Why SentinelHunt?
+
+| Traditional IDS | SentinelHunt |
+|-----------------|--------------|
+| ❌ Signature-based (misses zero-days) | ✅ Behavior-based (catches unknowns) |
+| ❌ Black-box ML models | ✅ Explainable AI (SHAP) |
+| ❌ Single language | ✅ Multi-language (Go, Python, JavaScript, TypeScript) |
+| ❌ Batch processing | ✅ Real-time + batch modes |
+| ❌ Alert spam | ✅ Campaign intelligence & timeline reconstruction |
+| ❌ No payload inspection (encrypted traffic) | ✅ Works with encryption (metadata only) |
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    SENTINELHUNT                         │
+└─────────────────────────────────────────────────────────┘
+
+[Packet Capture] ──> [Feature Engineering] ──> [Detection]
+     (Go)                  (Python)              (Python)
+                                                     │
+                                                     v
+                                            [Explainability]
+                                                 (SHAP)
+                                                     │
+                                                     v
+                                            [API + Dashboard]
+                                          (Node.js + React/TS)
+```
+
+### Components
+
+1. **📡 Packet Collector (Go)** - High-performance live capture & flow aggregation
+2. **🔧 Feature Engineering (Python)** - Extract 14 behavioral features from flows
+3. **🤖 Detection Engine (Python)** - Hybrid rule-based + ML anomaly detection
+4. **🧠 Explainability (Python + SHAP)** - Transparent threat explanations
+5. **🎨 Dashboard (React + TypeScript)** - Interactive SOC analyst interface
+6. **🌐 API Backend (Node.js)** - RESTful services for threat data
+7. **⚔️ Attack Simulation (Python + Bash)** - Validation & testing suite
+8. **📊 Evaluation (Python)** - Metrics, confusion matrix, performance analysis
+
+---
+
+## ✨ Key Features
+
+### 🔍 Detection Capabilities
+
+- **Zero-Day Detection** - Catches attacks with no prior signatures
+- **DNS Tunneling** - High entropy, deep subdomains, suspicious patterns
+- **Port Scanning** - Multiple destination ports, high packet rates
+- **C2 Beaconing** - Regular timing patterns (low IAT variability)
+- **Data Exfiltration** - High throughput, large byte transfers
+- **Encrypted Traffic Support** - Works without payload inspection
+
+### 🧠 Explainable AI
+
+- **SHAP Explanations** - Why each alert was triggered
+- **Feature Importance** - Global and per-alert attribution
+- **Human Narratives** - Analyst-friendly threat descriptions
+- **Visualizations** - Publication-quality plots for presentations
+
+### 📈 SOC Intelligence
+
+- **Alert Aggregation** - Group related alerts by entity/rule
+- **Campaign Detection** - Identify sustained attack patterns
+- **Timeline Reconstruction** - Chronological attack progression
+- **Severity Classification** - CRITICAL / HIGH / MEDIUM / LOW bands
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+```bash
+# WSL/Ubuntu
+sudo apt update
+sudo apt install python3 python3-pip tcpdump golang nodejs npm
+
+# Python dependencies
+pip3 install pandas numpy scikit-learn scapy shap matplotlib seaborn
+
+# Node.js dependencies (for dashboard)
+cd dashboard/backend && npm install
+cd ../frontend && npm install
+
+# Go dependencies (for collector)
+cd collector && go mod download
+```
+
+### Running the Platform
+
+#### 1. Start API Backend
+```bash
+cd dashboard/backend
+npm start
+# API running on http://localhost:5000
+```
+
+#### 2. Start Dashboard
+```bash
+cd dashboard/frontend
+npm start
+# Dashboard at http://localhost:3000
+```
+
+#### 3. Run Detection Pipeline (Existing Data)
+```bash
+cd feature_engineering
+python3 parse_pcap.py  # Extract features
+
+cd ../ml
+python3 train_baseline.py  # Train model
+
+cd ../detection_engine/scoring
+python3 threat_score.py  # Score flows
+python3 threat_labeler.py  # Generate alerts
+
+cd ../intelligence
+python3 aggregator.py  # Aggregate incidents
+python3 campaign_detector.py  # Detect campaigns
+python3 timeline_builder.py  # Build timelines
+```
+
+#### 4. Generate Explanations
+```bash
+cd explainability
+python3 explain_ml.py  # SHAP analysis
+python3 alert_explainer.py  # Human narratives
+```
+
+#### 5. Evaluate Performance
+```bash
+cd experiments
+python3 evaluation.py  # Calculate metrics
+```
+
+---
+
+## 📊 Current Status
 
 🟢 **Phase 1: Data Collection & Feature Engineering (Completed)**
 
@@ -122,6 +281,18 @@ This phase transforms raw detections into **actionable SOC alerts**.
 - Enabled analyst-style investigation and incident prioritization
 
 This phase elevates SentinelHunt from alerting to **true security intelligence**.
+
+---
+
+🟢 **Phase 7: Real-Time Collection & Dashboard (Completed)**
+
+### ✅ Completed (Day 12)
+- **Go Packet Collector**: High-performance live capture
+- **Node.js API Backend**: RESTful services
+- **React + TypeScript Dashboard**: Interactive UI
+- **SHAP Explainability**: ML interpretability
+- **Attack Simulations**: Port scan, DNS tunnel, beaconing, exfiltration
+- **Evaluation Framework**: Metrics, confusion matrix
 
 ---
 

@@ -1,0 +1,34 @@
+# SentinelHunt Packet Collector Configuration
+
+# Network Interface
+interface: "eth0"  # Change to your interface (use 'ip link' to list)
+
+# Capture Settings
+snapshot_length: 1600
+promiscuous_mode: true
+timeout_ms: 1000
+
+# BPF Filter (Berkeley Packet Filter)
+# Examples:
+#   "tcp or udp"           - Capture all TCP/UDP traffic
+#   "port 53"              - DNS traffic only
+#   "host 192.168.1.100"   - Specific host
+bpf_filter: "tcp or udp"
+
+# Flow Aggregation
+flow_timeout_seconds: 60  # Flows inactive for 60s are exported
+max_flows_in_memory: 10000
+
+# Export Settings
+output_directory: "../feature_engineering/outputs"
+output_format: "json"  # json or csv
+export_interval_seconds: 30
+
+# Feature Extraction
+enable_dns_features: true
+enable_temporal_features: true
+enable_rate_features: true
+
+# Logging
+log_level: "info"  # debug, info, warn, error
+log_file: "collector.log"
