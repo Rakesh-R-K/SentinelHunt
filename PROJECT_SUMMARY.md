@@ -623,13 +623,6 @@ cd dashboard/frontend && npm start  # Terminal 2
 - Research (literature review, novel contributions)
 - Professional Practices (documentation, testing, security)
 
-**Perfect for:**
-- Capstone project defense
-- GitHub portfolio for recruiters
-- Security researcher applications
-- SOC analyst/engineer positions
-- ML engineer roles with security focus
-
 ---
 
 **Repository**: [GitHub Link]  
