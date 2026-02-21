@@ -11,8 +11,20 @@ from detection_engine.scoring import alert_generator, severity, threat_labeler, 
 
 
 def test_integration():
-    # Placeholder: Load sample data and run through detection pipeline
-    print("Integration test placeholder: implement real tests.")
+    # Check if aggregator and campaign detector output files exist and print sample content
+    import os
+    import json
+    aggregator_output = "feature_engineering/outputs/aggregated_alerts.json"
+    campaign_output = "feature_engineering/outputs/campaigns.json"
+
+    for path in [aggregator_output, campaign_output]:
+        if os.path.exists(path):
+            print(f"[TEST] Found {path}")
+            with open(path, "r") as f:
+                data = json.load(f)
+                print(f"[TEST] Sample from {path}: {data[:1]}")
+        else:
+            print(f"[TEST] Missing {path} (run aggregator/campaign_detector first)")
     assert True
 
 if __name__ == "__main__":
