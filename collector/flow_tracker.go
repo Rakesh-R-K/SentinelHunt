@@ -82,10 +82,11 @@ type FlowFeatures struct {
 
 // FlowTracker manages all active flows
 type FlowTracker struct {
-	flows       map[FlowKey]*FlowData
-	mutex       sync.RWMutex
-	config      *Config
-	exportCount uint64
+	flows          map[FlowKey]*FlowData
+	mutex          sync.RWMutex
+	config         *Config
+	exportCount    uint64
+	redisPublisher *RedisPublisher
 }
 
 // NewFlowTracker creates a new flow tracker
@@ -155,6 +156,10 @@ func (ft *FlowTracker) ExportExpiredFlows() int {
 
 	if len(expiredFlows) > 0 {
 		ft.exportToFile(expiredFlows)
+		// Also publish to Redis if connected
+		if ft.redisPublisher != nil && ft.redisPublisher.IsConnected() {
+			ft.redisPublisher.PublishBatch(expiredFlows)
+		}
 		ft.exportCount += uint64(len(expiredFlows))
 		stats.ExportedFlows = ft.exportCount
 	}
@@ -176,6 +181,10 @@ func (ft *FlowTracker) ExportAll() int {
 
 	if len(allFlows) > 0 {
 		ft.exportToFile(allFlows)
+		// Also publish to Redis if connected
+		if ft.redisPublisher != nil && ft.redisPublisher.IsConnected() {
+			ft.redisPublisher.PublishBatch(allFlows)
+		}
 		ft.exportCount += uint64(len(allFlows))
 		stats.ExportedFlows = ft.exportCount
 	}

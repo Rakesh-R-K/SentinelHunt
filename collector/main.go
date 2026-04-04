@@ -30,6 +30,10 @@ type Config struct {
 	EnableDnsFeatures    bool   `yaml:"enable_dns_features"`
 	EnableTemporalFeatures bool `yaml:"enable_temporal_features"`
 	EnableRateFeatures   bool   `yaml:"enable_rate_features"`
+	EnableRedis          bool   `yaml:"enable_redis"`
+	RedisHost            string `yaml:"redis_host"`
+	RedisPort            int    `yaml:"redis_port"`
+	RedisPassword        string `yaml:"redis_password"`
 	LogLevel             string `yaml:"log_level"`
 	LogFile              string `yaml:"log_file"`
 }
@@ -46,11 +50,12 @@ type PacketStats struct {
 }
 
 var (
-	configFile = flag.String("config", "config.yaml", "Path to configuration file")
-	pcapFile   = flag.String("pcap", "", "Read from PCAP file instead of live capture")
-	stats      PacketStats
-	config     Config
-	tracker    *FlowTracker
+	configFile    = flag.String("config", "config.yaml", "Path to configuration file")
+	pcapFile      = flag.String("pcap", "", "Read from PCAP file instead of live capture")
+	stats         PacketStats
+	config        Config
+	tracker       *FlowTracker
+	redisPublisher *RedisPublisher
 )
 
 func main() {
@@ -61,12 +66,29 @@ func main() {
 		log.Fatalf("[FATAL] Failed to load config: %v", err)
 	}
 
-	log.Printf("[INFO] SentinelHunt Collector v1.0.0")
+	log.Printf("[INFO] SentinelHunt Collector v2.0.0")
 	log.Printf("[INFO] Interface: %s", config.Interface)
 	log.Printf("[INFO] BPF Filter: %s", config.BpfFilter)
 
 	// Initialize flow tracker
 	tracker = NewFlowTracker(&config)
+
+	// Initialize Redis publisher (optional)
+	if config.EnableRedis {
+		redisHost := config.RedisHost
+		if redisHost == "" {
+			redisHost = "localhost"
+		}
+		redisPort := config.RedisPort
+		if redisPort == 0 {
+			redisPort = 6379
+		}
+		redisPublisher = NewRedisPublisher(redisHost, redisPort, config.RedisPassword)
+		tracker.redisPublisher = redisPublisher
+		log.Printf("[INFO] Redis: %s", map[bool]string{true: "✅ Connected", false: "❌ File-only mode"}[redisPublisher.IsConnected()])
+	} else {
+		log.Printf("[INFO] Redis: disabled (enable_redis=false)")
+	}
 
 	// Setup signal handler for graceful shutdown
 	sigChan := make(chan os.Signal, 1)
@@ -133,6 +155,9 @@ func main() {
 shutdown:
 	log.Printf("[INFO] Exporting remaining flows...")
 	tracker.ExportAll()
+	if redisPublisher != nil {
+		redisPublisher.Close()
+	}
 	displayFinalStats()
 	log.Printf("[INFO] Collector stopped gracefully")
 }

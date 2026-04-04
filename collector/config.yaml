@@ -29,6 +29,12 @@ enable_dns_features: true
 enable_temporal_features: true
 enable_rate_features: true
 
+# Redis Streaming (optional — falls back to file export when disabled or disconnected)
+enable_redis: true
+redis_host: "localhost"
+redis_port: 6379
+redis_password: ""
+
 # Logging
 log_level: "info"  # debug, info, warn, error
 log_file: "collector.log"
