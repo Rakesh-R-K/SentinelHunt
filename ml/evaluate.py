@@ -1,3 +1,22 @@
+"""
+⚠️  DEPRECATED — This script is the original simple evaluator.
+    It is kept for reference only.
+
+    For production evaluation, use the new benchmark runner:
+        python -m experiments.benchmark_runner
+
+    The new runner supports:
+        - ROC/PR curves, per-threshold F1
+        - Cross-validation (stratified k-fold)
+        - Comparison with published academic results
+        - CIC-IDS2017 / UNSW-NB15 compatibility
+"""
+import warnings
+warnings.warn(
+    "evaluate.py is deprecated. Use 'python -m experiments.benchmark_runner' instead.",
+    DeprecationWarning, stacklevel=2,
+)
+
 import pandas as pd
 
 # Load results

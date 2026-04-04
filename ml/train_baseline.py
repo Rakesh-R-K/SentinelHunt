@@ -1,3 +1,21 @@
+"""
+⚠️  DEPRECATED — This script is the original Phase 3 baseline trainer.
+    It is kept for reference only.
+
+    For production model training, use the new pipeline:
+        python -m ml.training_pipeline --ensemble
+
+    The new pipeline supports:
+        - Autoencoder + LSTM + IsolationForest + LOF + OneClassSVM
+        - Hyperparameter tuning & cross-validation
+        - Model versioning & persistence
+"""
+import warnings
+warnings.warn(
+    "train_baseline.py is deprecated. Use 'python -m ml.training_pipeline' instead.",
+    DeprecationWarning, stacklevel=2,
+)
+
 import pandas as pd
 import joblib
 

@@ -1,5 +1,15 @@
 """
-SentinelHunt Evaluation Module
+⚠️  DEPRECATED — This is the original evaluation module with circular ground truth.
+    It is kept for reference only.
+
+    For scientifically rigorous evaluation, use the new benchmark runner:
+        python -m experiments.benchmark_runner
+
+    The new runner uses standard IDS benchmark datasets (CIC-IDS2017,
+    UNSW-NB15) and produces ROC/PR curves, cross-validation, and
+    comparison tables against published academic results.
+
+SentinelHunt Evaluation Module (Legacy)
 
 Purpose:
 - Calculate detection performance metrics

@@ -1,3 +1,19 @@
+"""
+⚠️  DEPRECATED — This script is the original retraining placeholder.
+    It is kept for reference only.
+
+    For production model retraining, use:
+        python -m ml.training_pipeline --ensemble --retrain
+
+    The new pipeline handles model versioning, ensemble training,
+    hyperparameter tuning, and cross-validation automatically.
+"""
+import warnings
+warnings.warn(
+    "retrain_pipeline.py is deprecated. Use 'python -m ml.training_pipeline' instead.",
+    DeprecationWarning, stacklevel=2,
+)
+
 # Model Retraining Pipeline (Placeholder)
 # Extend this script to automate model retraining with new data.
 
