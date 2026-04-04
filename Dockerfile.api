@@ -1,0 +1,20 @@
+# SentinelHunt API Server — Docker Build
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY dashboard/backend/package*.json ./
+
+# Install dependencies
+RUN npm ci --production
+
+# Copy server code
+COPY dashboard/backend/server.js .
+
+# Create data directories
+RUN mkdir -p feature_engineering/outputs
+
+EXPOSE 5000
+
+CMD ["node", "server.js"]

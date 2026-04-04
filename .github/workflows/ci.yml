@@ -1,0 +1,87 @@
+name: SentinelHunt CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    name: Lint & Test (Python)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov flake8 mypy
+      
+      - name: Lint with flake8
+        run: |
+          flake8 ml/ detection_engine/ streaming/ threat_intel/ \
+            --max-line-length=120 \
+            --ignore=E501,W503,E402 \
+            --count --show-source --statistics
+      
+      - name: Run tests
+        run: |
+          pytest tests/ -v --tb=short --color=yes \
+            --cov=ml --cov=detection_engine --cov=streaming \
+            --cov-report=term-missing \
+            --cov-report=xml:coverage.xml \
+            -x
+      
+      - name: Upload coverage report
+        if: always()
+        uses: codecov/codecov-action@v3
+        with:
+          file: coverage.xml
+
+  docker-build:
+    name: Docker Build Verification
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build ML Engine Image
+        run: docker build -f Dockerfile.ml -t sentinelhunt-ml .
+      
+      - name: Build API Server Image
+        run: docker build -f Dockerfile.api -t sentinelhunt-api .
+      
+      - name: Verify ML image
+        run: |
+          docker run --rm sentinelhunt-ml python -c "
+          from ml.models.ensemble import EnsembleDetector
+          from detection_engine.rules import RULES
+          print(f'✅ {len(RULES)} detection rules loaded')
+          print('✅ ML models importable')
+          "
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: table
+          severity: CRITICAL,HIGH

@@ -1,331 +1,333 @@
 # 🛡️ SentinelHunt
 
-**AI-Assisted Network Threat Hunting Platform**
+**AI-Powered Real-Time Network Threat Hunting Platform**
 
-> Behavioral anomaly detection meets explainable AI to hunt unknown network threats without signatures
+> Ensemble ML anomaly detection, MITRE ATT&CK mapping, and real-time streaming to hunt unknown network threats without signatures
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Go](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![Redis](https://img.shields.io/badge/Redis-7+-red.svg)](https://redis.io/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://docs.docker.com/compose/)
 
 ---
 
-## 🎯 Project Overview
+## 🎯 What is SentinelHunt?
 
-SentinelHunt is a **capstone-level threat hunting platform** that detects zero-day and unknown network threats using behavioral anomaly detection and explainable AI. Unlike signature-based systems (Snort, Suricata), SentinelHunt analyzes traffic behavior patterns to identify suspicious activity that has never been seen before.
+SentinelHunt is a **capstone-grade threat hunting platform** that combines ensemble machine learning, MITRE ATT&CK mapping, and real-time Redis streaming to detect zero-day and advanced persistent threats in network traffic — without relying on signatures.
 
-### Why SentinelHunt?
+### How It Compares
 
-| Traditional IDS | SentinelHunt |
-|-----------------|--------------|
-| ❌ Signature-based (misses zero-days) | ✅ Behavior-based (catches unknowns) |
-| ❌ Black-box ML models | ✅ Explainable AI (SHAP) |
-| ❌ Single language | ✅ Multi-language (Go, Python, JavaScript, TypeScript) |
-| ❌ Batch processing | ✅ Real-time + batch modes |
-| ❌ Alert spam | ✅ Campaign intelligence & timeline reconstruction |
-| ❌ No payload inspection (encrypted traffic) | ✅ Works with encryption (metadata only) |
+| Capability | Traditional IDS | SentinelHunt |
+|-----------|----------------|--------------|
+| Detection | ❌ Signature-based (misses zero-days) | ✅ Behavioral ML ensemble (catches unknowns) |
+| ML Models | ❌ None or single model | ✅ 5-model ensemble (Autoencoder, LSTM, IForest, LOF, OCSVM) |
+| Detection Rules | ❌ Regex patterns | ✅ 8 behavioral rules (DGA, lateral movement, exfil, JA3...) |
+| Threat Intel | ❌ Static feeds | ✅ VirusTotal + AbuseIPDB + Shodan + 5 OSINT feeds |
+| Framework Mapping | ❌ None | ✅ Automated MITRE ATT&CK (7 tactics, 20+ techniques) |
+| Architecture | ❌ Batch files | ✅ Redis Streams real-time pipeline |
+| Explainability | ❌ Black box | ✅ SHAP + human-readable narratives |
+| Dashboard | ❌ Static reports | ✅ WebSocket real-time SOC interface |
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    SENTINELHUNT                         │
-└─────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────┐
+│                     SentinelHunt v2.0                         │
+└───────────────────────────────────────────────────────────────┘
 
-[Packet Capture] ──> [Feature Engineering] ──> [Detection]
-     (Go)                  (Python)              (Python)
-                                                     │
-                                                     v
-                                            [Explainability]
-                                                 (SHAP)
-                                                     │
-                                                     v
-                                            [API + Dashboard]
-                                          (Node.js + React/TS)
+┌──────────┐    ┌──────────────┐    ┌─────────────────────┐
+│ Go       │    │ Redis        │    │ Real-Time Scorer     │
+│ Collector│───▶│ Streams      │───▶│ (ML + Rules + MITRE)│
+│ (pcap)   │    │              │    │                     │
+└──────────┘    └──────────────┘    └─────────┬───────────┘
+                                              │
+                                              ▼
+┌──────────┐    ┌──────────────┐    ┌─────────────────────┐
+│ React    │◀───│ Socket.io    │◀───│ Alert Stream        │
+│ Dashboard│    │ WebSocket    │    │ (sentinelhunt:alerts)│
+└──────────┘    └──────────────┘    └─────────────────────┘
+                                              │
+                                    ┌─────────┴───────────┐
+                                    │  Threat Intel        │
+                                    │  (VT/AbuseIPDB/      │
+                                    │   Shodan/OSINT)      │
+                                    └─────────────────────┘
 ```
 
 ### Components
 
-1. **📡 Packet Collector (Go)** - High-performance live capture & flow aggregation
-2. **🔧 Feature Engineering (Python)** - Extract 14 behavioral features from flows
-3. **🤖 Detection Engine (Python)** - Hybrid rule-based + ML anomaly detection
-4. **🧠 Explainability (Python + SHAP)** - Transparent threat explanations
-5. **🎨 Dashboard (React + TypeScript)** - Interactive SOC analyst interface
-6. **🌐 API Backend (Node.js)** - RESTful services for threat data
-7. **⚔️ Attack Simulation (Python + Bash)** - Validation & testing suite
-8. **📊 Evaluation (Python)** - Metrics, confusion matrix, performance analysis
+| Component | Language | Description |
+|-----------|----------|-------------|
+| **Packet Collector** | Go | High-performance pcap capture → Redis Streams |
+| **Real-Time Scorer** | Python | Ensemble ML + 8 detection rules + MITRE mapping |
+| **ML Engine** | Python/PyTorch | Autoencoder, LSTM, IForest, LOF, OneClassSVM |
+| **Detection Rules** | Python | DGA, lateral movement, exfil, credential abuse, JA3, protocol anomaly |
+| **MITRE Mapper** | Python | Auto ATT&CK enrichment + Navigator layer export |
+| **Threat Intel** | Python | VirusTotal, AbuseIPDB, Shodan, IOC DB (STIX 2.1) |
+| **API Server** | Node.js | REST + WebSocket (Socket.io), JWT auth, rate limiting |
+| **Dashboard** | React/TS | Real-time SOC interface with investigation workflows |
+| **Explainability** | Python | SHAP feature attribution + human-readable narratives |
 
 ---
 
 ## ✨ Key Features
 
-### 🔍 Detection Capabilities
+### 🤖 ML Ensemble (5 Models)
+- **Autoencoder** — Deep reconstruction error for anomaly detection (PyTorch)
+- **LSTM** — Temporal sequence modeling for beaconing patterns
+- **Isolation Forest** — Tree-based unsupervised outlier detection
+- **Local Outlier Factor** — Density-based local anomaly scoring
+- **One-Class SVM** — Boundary-based novelty detection
 
-- **Zero-Day Detection** - Catches attacks with no prior signatures
-- **DNS Tunneling** - High entropy, deep subdomains, suspicious patterns
-- **Port Scanning** - Multiple destination ports, high packet rates
-- **C2 Beaconing** - Regular timing patterns (low IAT variability)
-- **Data Exfiltration** - High throughput, large byte transfers
-- **Encrypted Traffic Support** - Works without payload inspection
+### 🔍 8 Detection Rules
+- Port scanning · DNS tunneling/DGA · JA3 TLS fingerprinting · Lateral movement (RDP/SMB)
+- Protocol anomaly · Credential brute force · Data exfiltration · C2 beaconing
+
+### ⬡ MITRE ATT&CK Integration
+- Automated technique mapping (20+ techniques across 7 tactics)
+- ATT&CK Navigator layer export
+- Per-alert investigation guidance
+
+### 🌐 Threat Intelligence
+- **APIs:** VirusTotal, AbuseIPDB, Shodan
+- **OSINT Feeds:** alienvault, abuse.ch, emerging threats, etc.
+- **IOC Database:** SQLite-backed with STIX 2.1 import/export
 
 ### 🧠 Explainable AI
-
-- **SHAP Explanations** - Why each alert was triggered
-- **Feature Importance** - Global and per-alert attribution
-- **Human Narratives** - Analyst-friendly threat descriptions
-- **Visualizations** - Publication-quality plots for presentations
-
-### 📈 SOC Intelligence
-
-- **Alert Aggregation** - Group related alerts by entity/rule
-- **Campaign Detection** - Identify sustained attack patterns
-- **Timeline Reconstruction** - Chronological attack progression
-- **Severity Classification** - CRITICAL / HIGH / MEDIUM / LOW bands
+- SHAP-based feature attribution (global + per-alert)
+- Human-readable threat narratives for SOC analysts
+- Feature importance visualizations
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: Docker (Recommended)
 
 ```bash
-# WSL/Ubuntu
-sudo apt update
-sudo apt install python3 python3-pip tcpdump golang nodejs npm
+# Clone and start all services
+git clone https://github.com/your-org/SentinelHunt.git
+cd SentinelHunt
 
-# Python dependencies
-pip3 install pandas numpy scikit-learn scapy shap matplotlib seaborn
+# Copy environment config
+cp .env.example .env
+# Edit .env with your API keys (optional)
 
-# Node.js dependencies (for dashboard)
-cd dashboard/backend && npm install
-cd ../frontend && npm install
+# Launch platform (5 services)
+docker-compose up -d
 
-# Go dependencies (for collector)
-cd collector && go mod download
+# Dashboard: http://localhost:3000
+# API:       http://localhost:5000
+# Redis:     localhost:6379
 ```
 
-### Running the Platform
+### Option 2: Manual Setup
 
-#### 1. Start API Backend
 ```bash
-cd dashboard/backend
-npm start
-# API running on http://localhost:5000
+# 1. Install Python dependencies
+pip install -r requirements.txt
+
+# 2. Install Node.js dependencies
+cd dashboard/backend && npm install && cd ../..
+cd dashboard/frontend && npm install && cd ../..
+
+# 3. Install Go dependencies
+cd collector && go mod download && cd ..
+
+# 4. Start Redis
+docker run -d -p 6379:6379 redis:7-alpine
+
+# 5. Start API backend
+cd dashboard/backend && npm start &
+
+# 6. Start dashboard
+cd dashboard/frontend && npm start &
+
+# 7. Train ML models
+python -m ml.training_pipeline --ensemble
+
+# 8. Start real-time scorer
+python -m streaming.realtime_scorer &
+
+# 9. (Optional) Run demo traffic simulator
+python -m streaming.demo_simulator --rate 10
 ```
 
-#### 2. Start Dashboard
+### Demo Mode (No Real Traffic Needed)
+
 ```bash
-cd dashboard/frontend
-npm start
-# Dashboard at http://localhost:3000
+# Start Redis + API + Dashboard, then:
+python -m streaming.demo_simulator --rate 5 --duration 120
+
+# Generates realistic benign + attack flows (85/15 mix):
+# Port scans, DNS tunnels, lateral movement, exfiltration, brute force
 ```
 
-#### 3. Run Detection Pipeline (Existing Data)
+### Default Credentials
+
+| Username | Password | Role |
+|----------|----------|------|
+| `analyst` | `sentinelhunt2026` | SOC Analyst |
+| `admin` | `sentineladmin` | Administrator |
+
+---
+
+## 📊 Detection Capabilities
+
+### Attack Types Detected
+
+| Attack | Detection Method | MITRE Technique |
+|--------|-----------------|-----------------|
+| Port Scanning | Destination port count heuristic + ML | T1046 |
+| DNS Tunneling | Entropy + subdomain depth + query length | T1071.004 |
+| DGA Beaconing | Bigram entropy analysis + ML | T1568.002 |
+| Lateral Movement | Internal-to-internal on admin ports | T1021 |
+| Data Exfiltration | Volume + rate threshold + ML | T1041, T1048 |
+| Credential Brute Force | Connection frequency + failure patterns | T1110 |
+| Protocol Anomaly | Port-service mismatch detection | T1571 |
+| C2 Communication | Timing regularity + encrypted traffic | T1573.002 |
+
+### ML Model Ensemble
+
+```
+                    IsolationForest (25%)
+                           │
+Input → Feature    →   Autoencoder (30%)   → Weighted  → Final
+        Engineering      │                    Voting      Score
+                      LOF (20%)              │
+                           │            ─────┘
+                    OneClassSVM (25%)
+```
+
+Each model scores flows independently. The ensemble combines scores using
+calibrated weights to minimize false positives while maximizing detection.
+
+---
+
+## 🧪 Testing
+
 ```bash
-cd feature_engineering
-python3 parse_pcap.py  # Extract features
+# Run full test suite
+pytest tests/ -v --tb=short
 
-cd ../ml
-python3 train_baseline.py  # Train model
+# Run with coverage
+pytest tests/ --cov=detection_engine --cov=ml --cov=streaming -v
 
-cd ../detection_engine/scoring
-python3 threat_score.py  # Score flows
-python3 threat_labeler.py  # Generate alerts
-
-cd ../intelligence
-python3 aggregator.py  # Aggregate incidents
-python3 campaign_detector.py  # Detect campaigns
-python3 timeline_builder.py  # Build timelines
+# Run specific test module
+pytest tests/test_detection_rules.py -v
+pytest tests/test_ml_models.py -v
+pytest tests/test_api_endpoints.py -v
 ```
 
-#### 4. Generate Explanations
+### Benchmarking
+
 ```bash
-cd explainability
-python3 explain_ml.py  # SHAP analysis
-python3 alert_explainer.py  # Human narratives
+# Run against standard IDS datasets (CIC-IDS2017)
+python -m experiments.benchmark_runner
+
+# Adversarial robustness testing
+python -c "
+from ml.adversarial_robustness import AdversarialTester
+# See experiments/ for full usage
+"
 ```
 
-#### 5. Evaluate Performance
+---
+
+## 📁 Project Structure
+
+```
+SentinelHunt/
+├── collector/                  # Go packet collector
+│   ├── main.go                 # Entry point + packet processing
+│   ├── flow_tracker.go         # Flow aggregation + feature extraction
+│   ├── redis_publisher.go      # Redis Streams integration
+│   └── config.yaml             # Collector configuration
+├── ml/                         # Machine learning engine
+│   ├── models/
+│   │   ├── autoencoder.py      # Deep autoencoder (PyTorch)
+│   │   ├── lstm_detector.py    # LSTM sequence detector
+│   │   └── ensemble.py         # 4-model ensemble system
+│   ├── training_pipeline.py    # Production training pipeline
+│   └── adversarial_robustness.py  # Adversarial attack testing
+├── detection_engine/           # Detection logic
+│   ├── rules/                  # 8 behavioral detection rules
+│   ├── scoring/                # Threat scoring + severity
+│   ├── intelligence/           # Campaign detection + timelines
+│   └── mitre_mapping.py        # ATT&CK technique mapper
+├── streaming/                  # Real-time pipeline
+│   ├── redis_broker.py         # Redis Streams pub/sub
+│   ├── realtime_scorer.py      # Live flow scoring engine
+│   ├── demo_simulator.py       # Demo traffic generator
+│   └── config.py               # Centralized configuration
+├── threat_intel/               # Threat intelligence
+│   ├── enrichment.py           # VT/AbuseIPDB/Shodan client
+│   ├── ioc_manager.py          # IOC database (STIX 2.1)
+│   └── feed_ingester.py        # OSINT feed pipeline
+├── dashboard/
+│   ├── backend/                # Express + Socket.io API
+│   └── frontend/               # React + TypeScript SOC UI
+├── explainability/             # SHAP + narratives
+├── experiments/                # Benchmarking + evaluation
+├── tests/                      # pytest test suite
+├── docker-compose.yml          # 5-service deployment
+├── config.yaml                 # Platform-wide configuration
+├── .env.example                # Environment variable template
+└── requirements.txt            # Python dependencies
+```
+
+---
+
+## 🔧 Configuration
+
+All settings are controlled via `config.yaml` and environment variables:
+
+```yaml
+# config.yaml — key settings
+ml:
+  ensemble_threshold: 0.5       # Anomaly threshold
+  iforest_n_estimators: 200     # IForest trees
+detection:
+  port_scan_threshold: 20       # Min ports for scan detection
+  dns_entropy_threshold: 3.5    # DGA entropy cutoff
+redis:
+  host: localhost
+  flow_stream: sentinelhunt:flows
+  alert_stream: sentinelhunt:alerts
+```
+
+See `.env.example` for API keys and secrets.
+
+---
+
+## 🐳 Docker Deployment
+
 ```bash
-cd experiments
-python3 evaluation.py  # Calculate metrics
+docker-compose up -d
+
+# Services:
+#   redis        — Message broker (port 6379)
+#   ml-engine    — Python ML scorer
+#   api-server   — Node.js REST + WebSocket (port 5000)
+#   dashboard    — React frontend (port 3000)
+#   collector    — Go packet capture
 ```
 
 ---
 
-## 📊 Current Status
+## 📚 References
 
-🟢 **Phase 1: Data Collection & Feature Engineering (Completed)**
-
-### ✅ Completed
-- Baseline benign network traffic captured using `tcpdump`
-- Multiple clean PCAP files collected:
-  - Web browsing traffic
-  - Idle/background traffic
-  - Git activity traffic
-- Dataset metadata documented  
-  *(PCAP files intentionally excluded from repository)*
-- PCAP parsing pipeline implemented using **Scapy**
-- Network flows extracted using standard **5-tuple definition**
-- Flow features exported to structured **CSV format** for downstream analysis
-
-### ✅ Flow-Level Feature Engineering (SOC-Grade)
-- **Basic Features**
-  - Packet count
-  - Flow duration
-  - Average packet size
-- **Temporal Features**
-  - Inter-arrival time statistics (min, max, mean, std)
-- **Rate & Volume Features**
-  - Total bytes
-  - Bytes per second
-  - Packets per second
-  - Average bytes per packet
-- **DNS Intelligence Features**
-  - DNS query length
-  - Subdomain depth
-  - Shannon entropy of DNS queries
-
-These features enable detection of behavioral patterns such as:
-- Beaconing malware
-- DNS tunneling
-- Low-and-slow command-and-control traffic
+- CIC-IDS2017 Dataset — Canadian Institute for Cybersecurity
+- MITRE ATT&CK Framework — https://attack.mitre.org
+- SHAP (SHapley Additive exPlanations) — Lundberg & Lee, 2017
+- Isolation Forest — Liu, Ting & Zhou, 2008
 
 ---
 
-🟡 **Phase 2: Baseline Analysis & Rule-Based Detection (Completed)**
+## 📄 License
 
-### ✅ Completed
-- Statistical baseline established from **2415 benign network flows**
-- Percentile-based profiling (90th / 95th / 99th) used to define normal behavior
-- Key observations:
-  - Most flows are short-lived and bursty
-  - Long-duration or high-volume flows are rare
-  - High DNS entropy and deep subdomains are uncommon in benign traffic
-- Explainable **rule-based anomaly detection** implemented using:
-  - High packet volume thresholds
-  - Long-lived connection thresholds
-  - DNS entropy thresholds
-  - DNS subdomain depth analysis
-- Flow-level **suspicion scoring system** introduced
-- Dataset enriched with anomaly flags and suspicion scores
-
-This phase demonstrates that meaningful anomaly detection is possible  
-**without machine learning**, using interpretable and defensible heuristics.
-
----
-
-🔵 **Phase 3: Machine Learning–Based Detection (Completed)**
-
-### ✅ Completed (Day 6)
-- ML-safe feature selection from enriched flow dataset
-- Feature normalization and preprocessing
-- Unsupervised anomaly detection using **Isolation Forest**
-- Generation of ML anomaly scores
-- Hybrid analysis of heuristic vs ML-based detection
-- Model and scaler persistence for future inference
-
----
-
-🟣 **Phase 4: Threat Scoring & SOC Alerting (Completed)**
-
-### ✅ Completed (Day 8)
-- Normalized ML anomaly scores and rule-based suspicion scores
-- Implemented **weighted threat score fusion**
-- Classified flows into **LOW / MEDIUM / HIGH / CRITICAL** severity bands
-- Introduced explainable **threat labeling layer**
-- Conservatively labeled suspicious traffic without overclassification
-- Generated **SOC-style JSON alerts** with:
-  - Timestamp
-  - Source and destination context
-  - Threat label
-  - Severity
-  - Confidence score
-
----
-
-🔴 **Phase 5: Alert Triage & Analyst Contextualization (Completed)**
-
-### ✅ Completed (Day 9)
-- Enhanced alerts with **analyst-readable explanations**
-- Introduced unique **alert identifiers (ALERT-XXXX)** for tracking
-- Added **human-readable reason field** explaining why each alert was raised
-- Added **threat categorization layer** (e.g., anomalous flow, scan, beaconing)
-- Enriched alerts with full **flow context**
-- Implemented **confidence scoring** to indicate detection reliability
-
-This phase transforms raw detections into **actionable SOC alerts**.
-
----
-
-🟠 **Phase 6: Alert Intelligence & Campaign Analysis (Completed)**
-
-### ✅ Completed (Day 11)
-- Implemented **alert aggregation** to correlate related alerts
-- Reduced alert noise by grouping alerts by:
-  - Source entity
-  - Detection rule
-- Introduced **campaign classification**:
-  - Single event
-  - Repeated activity
-  - Active campaign
-- Successfully detected and classified an **active DNS beaconing campaign**
-- Built **attack timeline reconstruction** to visualize:
-  - Repeated detections
-  - Threat score evolution
-  - Severity escalation over time
-- Enabled analyst-style investigation and incident prioritization
-
-This phase elevates SentinelHunt from alerting to **true security intelligence**.
-
----
-
-🟢 **Phase 7: Real-Time Collection & Dashboard (Completed)**
-
-### ✅ Completed (Day 12)
-- **Go Packet Collector**: High-performance live capture
-- **Node.js API Backend**: RESTful services
-- **React + TypeScript Dashboard**: Interactive UI
-- **SHAP Explainability**: ML interpretability
-- **Attack Simulations**: Port scan, DNS tunnel, beaconing, exfiltration
-- **Evaluation Framework**: Metrics, confusion matrix
-
----
-
-## ✅ Current Pipeline State
-
-**PCAP → Flow Extraction → Feature Engineering → Baseline Modeling →  
-Rule-Based Detection → ML Detection → Threat Scoring → Alert Triage →  
-Alert Aggregation → Campaign Detection → Timeline Reconstruction**
-
-SentinelHunt now functions as a **full end-to-end SOC-grade threat hunting platform**.
-
----
-
-## Detection Engine
-
-SentinelHunt uses a hybrid detection approach combining:
-- Statistical anomaly scoring
-- Deterministic rule-based detection
-- Machine learning–based anomaly detection
-
-### Alert Lifecycle
-1. Network flows are extracted from PCAP files
-2. Flow-level features are engineered (rate, entropy, timing)
-3. Rule-based and ML-based scores are fused
-4. Alerts are generated with severity and confidence
-5. Alerts are aggregated into incidents
-6. Campaigns are identified and timelines reconstructed
-
-### Rule-Based Detection (Current)
-Implemented rules include:
-- **DNS Beaconing Detection**
-  - High DNS entropy
-  - Deep subdomain usage
-  - Elevated packet rates
-
-These rules enhance explainability and improve confidence in high-risk alerts.
+MIT License — see [LICENSE](LICENSE) for details.

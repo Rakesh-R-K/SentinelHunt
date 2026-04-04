@@ -1,0 +1,35 @@
+# SentinelHunt Go Collector — Multi-stage Docker Build
+FROM golang:1.21-alpine as build
+
+WORKDIR /app
+
+# Copy module files
+COPY collector/go.mod collector/go.sum ./
+
+# Install libpcap
+RUN apk add --no-cache libpcap-dev gcc musl-dev
+
+# Download deps
+RUN go mod download
+
+# Copy source
+COPY collector/*.go ./
+COPY collector/config.yaml ./
+
+# Build
+RUN CGO_ENABLED=1 go build -o collector .
+
+# Runtime stage
+FROM alpine:3.19
+
+RUN apk add --no-cache libpcap
+
+WORKDIR /app
+
+COPY --from=build /app/collector .
+COPY --from=build /app/config.yaml .
+
+# Create output directory
+RUN mkdir -p /app/feature_engineering/outputs
+
+ENTRYPOINT ["./collector"]

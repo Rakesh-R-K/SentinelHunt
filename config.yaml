@@ -1,0 +1,63 @@
+# =============================================
+# SentinelHunt Platform Configuration
+# =============================================
+# Override any setting via environment variables:
+#   SENTINELHUNT_REDIS_HOST, SENTINELHUNT_VT_API_KEY, etc.
+
+log_level: "INFO"
+
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  flow_stream: "sentinelhunt:flows"
+  alert_stream: "sentinelhunt:alerts"
+  consumer_group: "sentinelhunt-workers"
+  max_stream_length: 100000
+
+ml:
+  iforest_n_estimators: 200
+  iforest_contamination: 0.05
+  autoencoder_epochs: 100
+  autoencoder_batch_size: 64
+  autoencoder_learning_rate: 0.001
+  autoencoder_latent_dim: 8
+  lstm_sequence_length: 10
+  lstm_hidden_dim: 64
+  lstm_epochs: 50
+  ensemble_threshold: 0.5
+  validation_split: 0.2
+  cross_validation_folds: 5
+
+detection:
+  port_scan_threshold: 20
+  dns_entropy_threshold: 3.5
+  brute_force_connection_threshold: 30
+  exfil_bytes_threshold: 5000000
+  rule_weight: 0.6
+  ml_weight: 0.4
+  severity_low: 0.3
+  severity_medium: 0.6
+  severity_high: 0.8
+
+threat_intel:
+  cache_ttl_seconds: 3600
+  max_cache_size: 10000
+  ioc_confidence_decay_days: 90
+
+api:
+  host: "0.0.0.0"
+  port: 5000
+  jwt_expiry_hours: 24
+  rate_limit_per_minute: 100
+  enable_websocket: true
+
+collector:
+  interface: "eth0"
+  snapshot_length: 1600
+  promiscuous_mode: true
+  bpf_filter: "tcp or udp"
+  flow_timeout_seconds: 60
+  max_flows_in_memory: 10000
+  export_interval_seconds: 30
+  enable_redis: true

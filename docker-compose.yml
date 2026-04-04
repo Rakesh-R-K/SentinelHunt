@@ -1,0 +1,118 @@
+version: "3.8"
+
+# =============================================
+# SentinelHunt — Docker Compose Stack
+# One-command deployment: docker-compose up
+# =============================================
+
+services:
+  # ---- Redis (Message Broker) ----
+  redis:
+    image: redis:7-alpine
+    container_name: sentinelhunt-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - sentinelhunt
+
+  # ---- ML Engine (Python) ----
+  ml-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    container_name: sentinelhunt-ml
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - SENTINELHUNT_REDIS_HOST=redis
+      - SENTINELHUNT_REDIS_PORT=6379
+      - SENTINELHUNT_LOG_LEVEL=INFO
+    volumes:
+      - ./ml/models:/app/ml/models
+      - ./feature_engineering/outputs:/app/feature_engineering/outputs
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - sentinelhunt
+
+  # ---- API Server (Node.js) ----
+  api-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: sentinelhunt-api
+    ports:
+      - "5000:5000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - PORT=5000
+      - SENTINELHUNT_REDIS_HOST=redis
+      - SENTINELHUNT_REDIS_PORT=6379
+      - NODE_ENV=production
+    volumes:
+      - ./feature_engineering/outputs:/app/feature_engineering/outputs:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - sentinelhunt
+
+  # ---- Dashboard (React) ----
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: sentinelhunt-dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-server
+    environment:
+      - REACT_APP_API_URL=http://api-server:5000
+    restart: unless-stopped
+    networks:
+      - sentinelhunt
+
+  # ---- Real-Time Scorer (Python) ----
+  scorer:
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    container_name: sentinelhunt-scorer
+    command: python -m streaming.realtime_scorer --consumer scorer-docker
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - SENTINELHUNT_REDIS_HOST=redis
+      - SENTINELHUNT_REDIS_PORT=6379
+      - SENTINELHUNT_LOG_LEVEL=INFO
+    volumes:
+      - ./ml/models:/app/ml/models:ro
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - sentinelhunt
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  sentinelhunt:
+    driver: bridge
