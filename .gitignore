@@ -244,6 +244,12 @@ datasets/*.pcapng
 
 # Environment config (contains secrets)
 .env
+.env.example
+
+# Local run scripts
+*.bat
+*.sh
+.test_venv/
 
 # Feature engineering outputs (generated)
 feature_engineering/outputs/*.csv

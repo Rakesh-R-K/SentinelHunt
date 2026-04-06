@@ -1,0 +1,14 @@
+.git
+.github
+.pytest_cache
+__pycache__
+node_modules
+logs
+feature_engineering/outputs
+ml/models/*.pth
+ml/models/*.pkl
+dist
+build
+.env
+.idea
+.vscode

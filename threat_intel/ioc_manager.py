@@ -293,10 +293,11 @@ class IOCManager:
 
         for row in rows:
             ioc = self._row_to_dict(row)
+            ioc_key = f"{ioc['ioc_type']}:{ioc['value']}"
             stix_indicator = {
                 "type": "indicator",
                 "spec_version": "2.1",
-                "id": f"indicator--{hashlib.md5(f'{ioc[\"ioc_type\"]}:{ioc[\"value\"]}'.encode()).hexdigest()}",
+                "id": f"indicator--{hashlib.md5(ioc_key.encode()).hexdigest()}",
                 "created": ioc["created_at"],
                 "modified": ioc["updated_at"],
                 "name": f"{ioc['ioc_type'].upper()}: {ioc['value']}",
